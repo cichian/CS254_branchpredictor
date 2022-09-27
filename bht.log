@@ -1,0 +1,67 @@
+waveform does not exist
+rm -r obj_dir/
+verilator -LDFLAGS -lboost_iostreams -Wno-fatal -Wall --cc --trace ariane_pkg.sv --top bht_wrapper bht_wrapper.sv --exe --build bht_wrapper_tb.cpp
+%Warning-VARHIDDEN: bht.sv:66:17: Declaration of signal hides declaration in upper scope: 'i'
+   66 |     for (genvar i = 0; i < 2; i++) begin : gen_bht_output
+      |                 ^
+                    bht_wrapper.sv:36:1: ... note: In file included from bht_wrapper.sv
+                    bht.sv:40:9: ... Location of original declaration
+   40 |     int i;
+      |         ^
+                    ... For warning description see https://verilator.org/warn/VARHIDDEN?v=4.216
+                    ... Use "/* verilator lint_off VARHIDDEN */" and lint_on around source to disable this message.
+%Warning-VARHIDDEN: bht.sv:93:31: Declaration of signal hides declaration in upper scope: 'i'
+   93 |             for (int unsigned i = 0; i < NR_ROWS; i++) begin
+      |                               ^
+                    bht_wrapper.sv:36:1: ... note: In file included from bht_wrapper.sv
+                    bht.sv:40:9: ... Location of original declaration
+   40 |     int i;
+      |         ^
+%Warning-VARHIDDEN: bht.sv:101:26: Declaration of signal hides declaration in upper scope: 'i'
+  101 |                 for (int i = 0; i < NR_ROWS; i++) begin
+      |                          ^
+                    bht_wrapper.sv:36:1: ... note: In file included from bht_wrapper.sv
+                    bht.sv:40:9: ... Location of original declaration
+   40 |     int i;
+      |         ^
+%Warning-WIDTH: bht.sv:60:40: Operator SHIFTL expects 64 bits on the LHS, but LHS's VARREF 'i' generates 32 bits.
+                            : ... In instance bht_wrapper.bht_ins
+   60 |          instruction_pc[i] = vpc_i + (i<<OFFSET);
+      |                                        ^~
+                bht_wrapper.sv:36:1: ... note: In file included from bht_wrapper.sv
+%Warning-UNUSED: bht_wrapper.sv:21:42: Bits of signal are not used: 'bht_prediction'[3:2]
+                                     : ... In instance bht_wrapper
+   21 |     ariane_pkg::bht_prediction_t [2-1:0] bht_prediction;
+      |                                          ^~~~~~~~~~~~~~
+%Warning-BLKSEQ: bht.sv:103:37: Blocking assignments (=) in sequential (flop or latch) block
+                              : ... Suggest delayed assignments (<=)
+  103 |                         bht_q[i][j] = '0;
+      |                                     ^
+                 bht_wrapper.sv:36:1: ... note: In file included from bht_wrapper.sv
+%Warning-UNOPTFLAT: bht.sv:28:49: Signal unoptimizable: Feedback to clock or circular logic: 'bht_wrapper.__Vcellout__bht_ins__bht_prediction_o'
+   28 |     output ariane_pkg::bht_prediction_t [2-1:0] bht_prediction_o
+      |                                                 ^~~~~~~~~~~~~~~~
+                    bht_wrapper.sv:36:1: ... note: In file included from bht_wrapper.sv
+                    bht.sv:28:49:      Example path: bht_wrapper.__Vcellout__bht_ins__bht_prediction_o
+                    bht.sv:67:42:      Example path: ASSIGNW
+                    bht.sv:28:49:      Example path: bht_wrapper.__Vcellout__bht_ins__bht_prediction_o
+make[1]: Entering directory '/home/cichian/in_table_taken/obj_dir'
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o bht_wrapper_tb.o ../bht_wrapper_tb.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated.o /usr/local/share/verilator/include/verilated.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o verilated_vcd_c.o /usr/local/share/verilator/include/verilated_vcd_c.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vbht_wrapper.o Vbht_wrapper.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vbht_wrapper___024root__DepSet_he61d89dd__0.o Vbht_wrapper___024root__DepSet_he61d89dd__0.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vbht_wrapper___024root__DepSet_he61d89dd__1.o Vbht_wrapper___024root__DepSet_he61d89dd__1.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vbht_wrapper___024root__DepSet_he61d89dd__2.o Vbht_wrapper___024root__DepSet_he61d89dd__2.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vbht_wrapper___024root__DepSet_he61d89dd__3.o Vbht_wrapper___024root__DepSet_he61d89dd__3.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14 -Os -c -o Vbht_wrapper__Trace__0.o Vbht_wrapper__Trace__0.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14  -c -o Vbht_wrapper___024root__Slow.o Vbht_wrapper___024root__Slow.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14  -c -o Vbht_wrapper___024root__DepSet_he61d89dd__0__Slow.o Vbht_wrapper___024root__DepSet_he61d89dd__0__Slow.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14  -c -o Vbht_wrapper___024root__DepSet_he61d89dd__1__Slow.o Vbht_wrapper___024root__DepSet_he61d89dd__1__Slow.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14  -c -o Vbht_wrapper__Syms.o Vbht_wrapper__Syms.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow      -std=gnu++14  -c -o Vbht_wrapper__Trace__0__Slow.o Vbht_wrapper__Trace__0__Slow.cpp
+echo "" > Vbht_wrapper__ALL.verilator_deplist.tmp
+Archive ar -rcs Vbht_wrapper__ALL.a Vbht_wrapper.o Vbht_wrapper___024root__DepSet_he61d89dd__0.o Vbht_wrapper___024root__DepSet_he61d89dd__1.o Vbht_wrapper___024root__DepSet_he61d89dd__2.o Vbht_wrapper___024root__DepSet_he61d89dd__3.o Vbht_wrapper__Trace__0.o Vbht_wrapper___024root__Slow.o Vbht_wrapper___024root__DepSet_he61d89dd__0__Slow.o Vbht_wrapper___024root__DepSet_he61d89dd__1__Slow.o Vbht_wrapper__Syms.o Vbht_wrapper__Trace__0__Slow.o
+g++    bht_wrapper_tb.o verilated.o verilated_vcd_c.o Vbht_wrapper__ALL.a   -lboost_iostreams    -o Vbht_wrapper
+rm Vbht_wrapper__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/home/cichian/in_table_taken/obj_dir'
